@@ -11,7 +11,7 @@ const ScoreCard = () => {
 
   const frameRolls = () => {
     const rolls = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < Constants.MAX_ROLLS; i++) {
       rolls.push(<td key={i} id={"r" + i} colSpan="3"></td>);
     }
 
@@ -20,7 +20,7 @@ const ScoreCard = () => {
 
   const footer = () => {
     const frameScore = [];
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < Constants.MAX_FRAMES; i++) {
       frameScore.push(<td key={"frame" + i} colSpan="6"></td>);
     }
 

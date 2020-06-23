@@ -1,5 +1,7 @@
 const Constants = {
   APP_TITLE: "Bowling Game",
+  MAX_ROLLS: 20,
+  MAX_FRAMES: 11,
   SCORECARD_TITLES: [
     "Frame 1",
     "Frame 2",
