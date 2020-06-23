@@ -1,7 +1,7 @@
 import React from "react";
 import Constants from "../../../constants";
 
-const ScoreCard = () => {
+const ScoreCard = (props) => {
   const header = () =>
     Constants.SCORECARD_TITLES.map((title) => (
       <th key={title} colSpan="6">
@@ -12,7 +12,11 @@ const ScoreCard = () => {
   const frameRolls = () => {
     const rolls = [];
     for (let i = 0; i < Constants.MAX_ROLLS; i++) {
-      rolls.push(<td key={i} id={"r" + i} colSpan="3"></td>);
+      rolls.push(
+        <td key={i} id={"r" + i} colSpan="3">
+          {props.rolls.length > i ? props.rolls[i] : ""}
+        </td>
+      );
     }
 
     return rolls;
@@ -33,7 +37,9 @@ const ScoreCard = () => {
         <tr>{header()}</tr>
         <tr>
           {frameRolls()}
-          <td id="total-score" colSpan="6"></td>
+          <td id="total-score" colSpan="6">
+            {props.score}
+          </td>
         </tr>
         <tr>{footer()}</tr>
       </table>

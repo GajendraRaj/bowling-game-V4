@@ -5,7 +5,7 @@ import ScoreCard from "../../../components/bowling-game/score-card";
 describe("Scorecard component", () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<ScoreCard />);
+    wrapper = shallow(<ScoreCard rolls={[]} score={""} />);
   });
 
   describe("Render ScoreCard Table", () => {
