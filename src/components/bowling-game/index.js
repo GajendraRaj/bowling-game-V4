@@ -11,12 +11,7 @@ const BowlingGame = () => {
 
   const updateScore = (pinsDown) => {
     const rolls = [...gameState.rolls, pinsDown];
-    let score = 0;
-    if (rolls.length > 0) {
-      for (let i = 0; i < rolls.length; i++) {
-        score += rolls[i];
-      }
-    }
+    let score = rolls.length > 0 ? getTotalScore(rolls) : gameState.score;
 
     setGameState((prevState) => {
       return {
@@ -25,6 +20,15 @@ const BowlingGame = () => {
         score,
       };
     });
+  };
+
+  const getTotalScore = (rolls) => {
+    let score = 0;
+    for (let i = 0; i < rolls.length; i++) {
+      score += rolls[i];
+    }
+
+    return score;
   };
 
   return (
