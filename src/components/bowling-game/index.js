@@ -9,12 +9,20 @@ const BowlingGame = () => {
   };
   const [gameState, setGameState] = useState(initialState);
 
-  const updateScore = () => {
-    const rolls = [...gameState.rolls, 0];
+  const updateScore = (pinsDown) => {
+    const rolls = [...gameState.rolls, pinsDown];
+    let score = 0;
+    if (rolls.length > 0) {
+      for (let i = 0; i < rolls.length; i++) {
+        score += rolls[i];
+      }
+    }
+
     setGameState((prevState) => {
       return {
         ...prevState,
         rolls,
+        score,
       };
     });
   };

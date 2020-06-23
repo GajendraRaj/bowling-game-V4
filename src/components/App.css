@@ -80,3 +80,8 @@ table.Scorecard #r20 {
 table.Scorecard #total-score {
   border-bottom: none;
 }
+
+button {
+  margin: 5px;
+  padding: 10px;
+}

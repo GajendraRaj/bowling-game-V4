@@ -10,7 +10,7 @@ describe("Pins component", () => {
   });
 
   it("should render Buttons to capture pin down for gutter ball", () => {
-    expect(wrapper.find("button").at(0)).toBeDefined();
     expect(wrapper.find("button").at(0).text()).toEqual("0");
+    expect(wrapper.find("button").at(1).text()).toEqual("1");
   });
 });

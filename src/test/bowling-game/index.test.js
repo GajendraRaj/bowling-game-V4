@@ -35,4 +35,14 @@ describe("BowlingGame component", () => {
     const totalScore = wrapper.find(ScoreCard).find("#total-score").text();
     expect(totalScore).toEqual("0");
   });
+
+  it("should score game as 20, if all frames score are 1", () => {
+    const wrapper = mount(<BowlingGame />);
+    const startButton = wrapper.find(Pins).find("button").at(1);
+    for (let i = 0; i < 20; i++) {
+      startButton.simulate("click");
+    }
+    const totalScore = wrapper.find(ScoreCard).find("#total-score").text();
+    expect(totalScore).toEqual("20");
+  });
 });
