@@ -12,9 +12,10 @@ const ScoreCard = (props) => {
   const frameRolls = () => {
     const rolls = [];
     for (let i = 0; i < Constants.MAX_ROLLS; i++) {
+      const downPins = props.rolls.length > i ? props.rolls[i] : "";
       rolls.push(
         <td key={i} id={"r" + i} colSpan="3">
-          {props.rolls.length > i ? props.rolls[i] : ""}
+          {downPins}
         </td>
       );
     }

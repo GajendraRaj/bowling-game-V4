@@ -3,7 +3,11 @@ import ScoreCard from "./score-card";
 import Pins from "./pins";
 
 const BowlingGame = () => {
-  const [gameState, setGameState] = useState({ rolls: [], score: 0 });
+  const initialState = {
+    rolls: [],
+    score: 0,
+  };
+  const [gameState, setGameState] = useState(initialState);
 
   const updateScore = () => {
     const rolls = [...gameState.rolls, 0];
@@ -14,6 +18,7 @@ const BowlingGame = () => {
       };
     });
   };
+
   return (
     <div className="Game">
       <Pins pinsDown={updateScore} />
