@@ -70,5 +70,15 @@ describe("Scorecard component", () => {
       expect(wrapper.find("#frame8").text()).toEqual("18");
       expect(wrapper.find("#frame9").text()).toEqual("20");
     });
+
+    it("should render frame roll2 as '/', if score is spare", () => {
+      const wrapper = shallow(
+        <ScoreCard rolls={[5, 5, 5, 5]} score={""} frameScore={[]} />
+      );
+      expect(wrapper.find("#r0").text()).toEqual("5");
+      expect(wrapper.find("#r1").text()).toEqual("/");
+      expect(wrapper.find("#r2").text()).toEqual("5");
+      expect(wrapper.find("#r3").text()).toEqual("/");
+    });
   });
 });
