@@ -13,11 +13,14 @@ const ScoreCard = (props) => {
     const rolls = [];
     let i = 0;
     for (let frame = 0; frame < 10; frame++) {
-      let roll1 = props.rolls.length > i ? props.rolls[i] : "";
-      let roll2 = props.rolls.length > i + 1 ? props.rolls[i + 1] : "";
-      if (roll1 + roll2 === 10) {
-        roll2 = Constants.SPARE;
-      }
+      const roll1 = props.rolls.length > i ? props.rolls[i] : "";
+      const roll2 =
+        props.rolls.length > i + 1
+          ? isSpare(roll1, props.rolls[i + 1])
+            ? Constants.SPARE
+            : props.rolls[i + 1]
+          : "";
+
       rolls.push(
         <td key={i} id={"r" + i} colSpan="3">
           {roll1}
@@ -32,6 +35,10 @@ const ScoreCard = (props) => {
     }
 
     return rolls;
+  };
+
+  const isSpare = (roll1, roll2) => {
+    return roll1 + roll2 === 10;
   };
 
   const footer = () => {
