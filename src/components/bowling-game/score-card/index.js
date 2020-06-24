@@ -26,9 +26,10 @@ const ScoreCard = (props) => {
   const footer = () => {
     const frameScore = [];
     for (let i = 0; i < Constants.MAX_FRAMES; i++) {
+      const score = props.frameScore.length > i ? props.frameScore[i] : "";
       frameScore.push(
         <td id={"frame" + i} key={"frame" + i} colSpan="6">
-          {props.frameScore.length > i ? props.frameScore[i] : ""}
+          {score}
         </td>
       );
     }
