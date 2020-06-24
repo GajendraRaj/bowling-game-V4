@@ -8,6 +8,7 @@ const BowlingGame = () => {
     score: 0,
   };
   const [gameState, setGameState] = useState(initialState);
+  const [frameScore, setFrameScore] = useState([]);
 
   const updateScore = (pinsDown) => {
     const rolls = [...gameState.rolls, pinsDown];
@@ -23,18 +24,33 @@ const BowlingGame = () => {
   };
 
   const getTotalScore = (rolls) => {
-    let score = 0;
-    for (let i = 0; i < rolls.length; i++) {
-      score += rolls[i];
+    let score = 0,
+      i = 0,
+      isGameOver = true,
+      frameScore = [];
+    for (let frame = 0; frame < 10; frame++) {
+      if (i + 1 >= rolls.length) {
+        isGameOver = false;
+        break;
+      }
+      score += rolls[i] + rolls[i + 1];
+      i += 2;
+      frameScore.push(score);
     }
-
-    return score;
+    setFrameScore(frameScore);
+    if (isGameOver) {
+      return score;
+    }
   };
 
   return (
     <div className="Game">
       <Pins pinsDown={updateScore} />
-      <ScoreCard rolls={gameState.rolls} score={gameState.score} />
+      <ScoreCard
+        rolls={gameState.rolls}
+        score={gameState.score}
+        frameScore={frameScore}
+      />
     </div>
   );
 };

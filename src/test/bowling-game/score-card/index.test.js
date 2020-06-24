@@ -5,7 +5,7 @@ import ScoreCard from "../../../components/bowling-game/score-card";
 describe("Scorecard component", () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<ScoreCard rolls={[]} score={""} />);
+    wrapper = shallow(<ScoreCard rolls={[]} score={""} frameScore={[]} />);
   });
 
   describe("Render ScoreCard Table", () => {
@@ -48,6 +48,27 @@ describe("Scorecard component", () => {
         .forEach((cell) => {
           expect(cell.text()).toEqual("");
         });
+    });
+
+    it("should generate each frame score", () => {
+      const wrapper = shallow(
+        <ScoreCard
+          rolls={[]}
+          score={""}
+          frameScore={[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]}
+        />
+      );
+
+      expect(wrapper.find("#frame0").text()).toEqual("2");
+      expect(wrapper.find("#frame1").text()).toEqual("4");
+      expect(wrapper.find("#frame2").text()).toEqual("6");
+      expect(wrapper.find("#frame3").text()).toEqual("8");
+      expect(wrapper.find("#frame4").text()).toEqual("10");
+      expect(wrapper.find("#frame5").text()).toEqual("12");
+      expect(wrapper.find("#frame6").text()).toEqual("14");
+      expect(wrapper.find("#frame7").text()).toEqual("16");
+      expect(wrapper.find("#frame8").text()).toEqual("18");
+      expect(wrapper.find("#frame9").text()).toEqual("20");
     });
   });
 });
