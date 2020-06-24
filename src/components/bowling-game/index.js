@@ -33,8 +33,19 @@ const BowlingGame = () => {
         isGameOver = false;
         break;
       }
-      score += rolls[i] + rolls[i + 1];
-      i += 2;
+
+      if (rolls[i] + rolls[i + 1] === 10) {
+        if (i + 2 >= rolls.length) {
+          isGameOver = false;
+          break;
+        }
+        score += 10 + rolls[i + 2];
+        i += 2;
+      } else {
+        score += rolls[i] + rolls[i + 1];
+        i += 2;
+      }
+
       frameScore.push(score);
     }
     setFrameScore(frameScore);

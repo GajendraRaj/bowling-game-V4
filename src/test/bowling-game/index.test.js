@@ -45,4 +45,14 @@ describe("BowlingGame component", () => {
     const totalScore = wrapper.find(ScoreCard).find("#total-score").text();
     expect(totalScore).toEqual("20");
   });
+
+  it("should score game with spare", () => {
+    const wrapper = mount(<BowlingGame />);
+    const startButton = wrapper.find(Pins).find("button").at(5);
+    for (let i = 0; i <= 20; i++) {
+      startButton.simulate("click");
+    }
+    const totalScore = wrapper.find(ScoreCard).find("#total-score").text();
+    expect(totalScore).toEqual("150");
+  });
 });
