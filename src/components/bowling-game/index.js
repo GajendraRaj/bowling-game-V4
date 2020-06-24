@@ -29,13 +29,13 @@ const BowlingGame = () => {
       isGameOver = true,
       frameScore = [];
     for (let frame = 0; frame < 10; frame++) {
-      if (i + 1 >= rolls.length) {
+      if (rolls.length <= i + 1) {
         isGameOver = false;
         break;
       }
 
-      if (rolls[i] + rolls[i + 1] === 10) {
-        if (i + 2 >= rolls.length) {
+      if (isSpare(rolls[i], rolls[i + 1])) {
+        if (rolls.length <= i + 2) {
           isGameOver = false;
           break;
         }
@@ -52,6 +52,10 @@ const BowlingGame = () => {
     if (isGameOver) {
       return score;
     }
+  };
+
+  const isSpare = (roll1, roll2) => {
+    return roll1 + roll2 === 10;
   };
 
   return (
