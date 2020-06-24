@@ -16,7 +16,7 @@ const ScoreCard = (props) => {
       let roll1 = props.rolls.length > i ? props.rolls[i] : "";
       let roll2 = props.rolls.length > i + 1 ? props.rolls[i + 1] : "";
       if (roll1 + roll2 === 10) {
-        roll2 = "/";
+        roll2 = Constants.SPARE;
       }
       rolls.push(
         <td key={i} id={"r" + i} colSpan="3">
