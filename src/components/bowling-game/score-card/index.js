@@ -26,25 +26,68 @@ const ScoreCard = (props) => {
 
   const getFrameRolls = (frame, frameRolls, i) => {
     const rolls = props.rolls;
-    const roll1 = rolls.length > i ? (isStrike(i) ? "" : rolls[i]) : "";
-    const roll2 = isStrike(i)
-      ? Constants.STRIKE
-      : rolls.length > i + 1
-      ? isSpare(i)
-        ? Constants.SPARE
-        : rolls[i + 1]
-      : "";
+    const colSpanValue = frame > 8 ? "2" : "3";
+    if (frame !== 9) {
+      const roll1 = rolls.length > i ? (isStrike(i) ? "" : rolls[i]) : "";
+      const roll2 = isStrike(i)
+        ? Constants.STRIKE
+        : rolls.length > i + 1
+        ? isSpare(i)
+          ? Constants.SPARE
+          : rolls[i + 1]
+        : "";
 
-    frameRolls.push(
-      <td key={2 * frame} id={"r" + 2 * frame} colSpan="3">
-        {roll1}
-      </td>
-    );
-    frameRolls.push(
-      <td key={2 * frame + 1} id={"r" + (2 * frame + 1)} colSpan="3">
-        {roll2}
-      </td>
-    );
+      frameRolls.push(
+        <td key={2 * frame} id={"r" + 2 * frame} colSpan={colSpanValue}>
+          {roll1}
+        </td>
+      );
+      frameRolls.push(
+        <td
+          key={2 * frame + 1}
+          id={"r" + (2 * frame + 1)}
+          colSpan={colSpanValue}
+        >
+          {roll2}
+        </td>
+      );
+    } else {
+      const roll1 = rolls.length > i ? (isStrike(i) ? "X" : rolls[i]) : "";
+      const roll2 =
+        rolls.length > i + 1
+          ? isStrike(i + 1)
+            ? "X"
+            : !isStrike(i) && isSpare(i)
+            ? Constants.SPARE
+            : rolls[i + 1]
+          : "";
+      const roll3 =
+        rolls.length > i + 2
+          ? isStrike(i + 2)
+            ? "X"
+            : props.rolls[i + 2]
+          : "";
+
+      frameRolls.push(
+        <td key={2 * frame} id={"r" + 2 * frame} colSpan={colSpanValue}>
+          {roll1}
+        </td>
+      );
+      frameRolls.push(
+        <td
+          key={2 * frame + 1}
+          id={"r" + (2 * frame + 1)}
+          colSpan={colSpanValue}
+        >
+          {roll2}
+        </td>
+      );
+      frameRolls.push(
+        <td key={20} id={"r" + 20} colSpan={colSpanValue}>
+          {roll3}
+        </td>
+      );
+    }
   };
 
   const isSpare = (i) => {

@@ -28,8 +28,8 @@ describe("Scorecard component", () => {
       expect(wrapper.find("th").at(10).text()).toEqual("Total Score");
     });
 
-    it("should render table content with 21 cells (20 for rolls and 1 for total score) empty", () => {
-      expect(wrapper.find("tr").at(1).find("td").length).toEqual(21);
+    it("should render table content with 22 cells (21 for rolls and 1 for total score) empty", () => {
+      expect(wrapper.find("tr").at(1).find("td").length).toEqual(22);
       wrapper
         .find("tr")
         .at(1)
@@ -87,6 +87,17 @@ describe("Scorecard component", () => {
       );
       expect(wrapper.find("#r0").text()).toEqual("");
       expect(wrapper.find("#r1").text()).toEqual("X");
+    });
+
+    it("should render 3 cells in last frame ", () => {
+      expect(wrapper.find("tr").at(1).find("td").length).toEqual(22);
+      for (let i = 0; i < 21; i++) {
+        if (i > 17) {
+          expect(wrapper.find("#r" + i).prop("colSpan")).toEqual("2");
+        } else {
+          expect(wrapper.find("#r" + i).prop("colSpan")).toEqual("3");
+        }
+      }
     });
   });
 });
