@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import ScoreCard from "./score-card";
 import Pins from "./pins";
+import Constants from "../../constants";
 
 const BowlingGame = () => {
   const initialState = {
     rolls: [],
     score: 0,
-    possibleRoll: 10,
+    possibleRoll: Constants.ACTIVE_PINS,
     isSecondRoll: false,
   };
   const [gameState, setGameState] = useState(initialState);
@@ -15,9 +16,7 @@ const BowlingGame = () => {
   const updateScore = (pinsDown) => {
     const rolls = [...gameState.rolls, pinsDown];
     let score = rolls.length > 0 ? getTotalScore(rolls) : gameState.score;
-    let possibleRoll =
-      gameState.isSecondRoll || pinsDown === 10 ? 10 : 10 - pinsDown;
-    let isSecondRoll = gameState.isSecondRoll || pinsDown === 10 ? false : true;
+    const { possibleRoll, isSecondRoll } = getPossibleRolls(pinsDown);
 
     setGameState((prevState) => {
       return {
@@ -64,6 +63,17 @@ const BowlingGame = () => {
     setFrameScore(frameScore);
     if (isGameOver) {
       return score;
+    }
+  };
+
+  const getPossibleRolls = (pinsDown) => {
+    if (gameState.isSecondRoll || pinsDown === Constants.ACTIVE_PINS) {
+      return { possibleRoll: Constants.ACTIVE_PINS, isSecondRoll: false };
+    } else {
+      return {
+        possibleRoll: Constants.ACTIVE_PINS - pinsDown,
+        isSecondRoll: true,
+      };
     }
   };
 
