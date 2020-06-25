@@ -3,6 +3,7 @@ const Constants = {
   MAX_ROLLS: 20,
   MAX_FRAMES: 11,
   SPARE: "/",
+  STRIKE: "X",
   SCORECARD_TITLES: [
     "Frame 1",
     "Frame 2",
