@@ -12,6 +12,7 @@ const BowlingGame = () => {
   };
   const [gameState, setGameState] = useState(initialState);
   const [frameScore, setFrameScore] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
 
   const updateScore = (pinsDown) => {
     const rolls = [...gameState.rolls, pinsDown];
@@ -62,6 +63,7 @@ const BowlingGame = () => {
     }
     setFrameScore(frameScore);
     if (isGameOver) {
+      setGameOver(true);
       return score;
     }
   };
@@ -83,7 +85,11 @@ const BowlingGame = () => {
 
   return (
     <div className="Game">
-      <Pins pinsDown={updateScore} possibleRoll={gameState.possibleRoll} />
+      <Pins
+        pinsDown={updateScore}
+        possibleRoll={gameState.possibleRoll}
+        gameOver={gameOver}
+      />
       <ScoreCard
         rolls={gameState.rolls}
         score={gameState.score}

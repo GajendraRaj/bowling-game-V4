@@ -5,7 +5,12 @@ const Pins = (props) => {
     let pins = [];
     for (let i = 0; i <= props.possibleRoll; i++) {
       pins.push(
-        <button id={"pin" + i} key={i} onClick={() => props.pinsDown(i)}>
+        <button
+          id={"pin" + i}
+          key={i}
+          disabled={props.gameOver}
+          onClick={() => props.pinsDown(i)}
+        >
           {i}
         </button>
       );

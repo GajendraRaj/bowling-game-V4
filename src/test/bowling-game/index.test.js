@@ -83,4 +83,47 @@ describe("BowlingGame component", () => {
     expect(wrapper.find(Pins).find("button").at(9)).toHaveLength(0);
     expect(wrapper.find(Pins).find("button").at(10)).toHaveLength(0);
   });
+
+  it("should disabled the input buttons if 20 rolls completed.", () => {
+    const wrapper = mount(<BowlingGame />);
+    for (let i = 0; i < 10; i++) {
+      const startButton1 = wrapper.find(Pins).find("button").at(0);
+      const startButton2 = wrapper.find(Pins).find("button").at(1);
+      startButton1.simulate("click");
+      startButton2.simulate("click");
+    }
+    expect(wrapper.find(Pins).find("button").at(0).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(1).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(2).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(3).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(4).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(5).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(6).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(7).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(8).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(9).prop("disabled")).toEqual(
+      true
+    );
+    expect(wrapper.find(Pins).find("button").at(10).prop("disabled")).toEqual(
+      true
+    );
+  });
 });
