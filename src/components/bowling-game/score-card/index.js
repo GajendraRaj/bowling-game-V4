@@ -12,7 +12,7 @@ const ScoreCard = (props) => {
   const frameRolls = () => {
     const frameRolls = [];
     let i = 0;
-    for (let frame = 0; frame < 10; frame++) {
+    for (let frame = 0; frame < Constants.MAX_FRAME_COUNT; frame++) {
       getRoll1(props.rolls, i, frame, frameRolls);
       getRoll2(props.rolls, i, frame, frameRolls);
       if (frame === 9) {

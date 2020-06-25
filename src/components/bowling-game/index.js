@@ -35,7 +35,7 @@ const BowlingGame = () => {
       i = 0,
       isGameOver = true,
       frameScore = [];
-    for (let frame = 0; frame < 10; frame++) {
+    for (let frame = 0; frame < Constants.MAX_FRAME_COUNT; frame++) {
       if (rolls.length <= i + 1) {
         isGameOver = false;
         break;

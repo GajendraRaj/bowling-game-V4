@@ -5,6 +5,7 @@ const Constants = {
   SPARE: "/",
   STRIKE: "X",
   ACTIVE_PINS: 10,
+  MAX_FRAME_COUNT: 10,
   SCORECARD_TITLES: [
     "Frame 1",
     "Frame 2",
