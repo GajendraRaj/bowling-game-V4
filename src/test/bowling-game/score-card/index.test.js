@@ -80,5 +80,13 @@ describe("Scorecard component", () => {
       expect(wrapper.find("#r2").text()).toEqual("5");
       expect(wrapper.find("#r3").text()).toEqual("/");
     });
+
+    it("should render frame roll2 as 'X', if score is strike", () => {
+      const wrapper = shallow(
+        <ScoreCard rolls={[10, 10]} score={""} frameScore={[]} />
+      );
+      expect(wrapper.find("#r0").text()).toEqual("");
+      expect(wrapper.find("#r1").text()).toEqual("X");
+    });
   });
 });

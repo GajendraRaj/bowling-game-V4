@@ -10,35 +10,42 @@ const ScoreCard = (props) => {
     ));
 
   const frameRolls = () => {
-    const rolls = [];
+    const frameRolls = [];
     let i = 0;
     for (let frame = 0; frame < 10; frame++) {
-      const roll1 = props.rolls.length > i ? props.rolls[i] : "";
-      const roll2 =
-        props.rolls.length > i + 1
-          ? isSpare(roll1, props.rolls[i + 1])
-            ? Constants.SPARE
-            : props.rolls[i + 1]
-          : "";
+      frameRolls.push(
+        <td key={2 * frame} id={"r" + 2 * frame} colSpan="3">
+          {props.rolls.length > i ? (isStrike(i) ? "" : props.rolls[i]) : ""}
+        </td>
+      );
+      frameRolls.push(
+        <td key={2 * frame + 1} id={"r" + (2 * frame + 1)} colSpan="3">
+          {isStrike(i)
+            ? "X"
+            : props.rolls.length > i + 1
+            ? isSpare(i)
+              ? Constants.SPARE
+              : props.rolls[i + 1]
+            : ""}
+        </td>
+      );
 
-      rolls.push(
-        <td key={i} id={"r" + i} colSpan="3">
-          {roll1}
-        </td>
-      );
-      rolls.push(
-        <td key={i + 1} id={"r" + (i + 1)} colSpan="3">
-          {roll2}
-        </td>
-      );
-      i += 2;
+      if (isStrike(i)) {
+        i++;
+      } else {
+        i += 2;
+      }
     }
 
-    return rolls;
+    return frameRolls;
   };
 
-  const isSpare = (roll1, roll2) => {
-    return roll1 + roll2 === 10;
+  const isSpare = (i) => {
+    return props.rolls[i] + props.rolls[i + 1] === 10;
+  };
+
+  const isStrike = (i) => {
+    return props.rolls[i] === 10;
   };
 
   const footer = () => {
