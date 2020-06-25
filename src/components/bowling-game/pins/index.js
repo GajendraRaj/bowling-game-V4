@@ -3,7 +3,7 @@ import React from "react";
 const Pins = (props) => {
   const pins = () => {
     let pins = [];
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= props.possibleRoll; i++) {
       pins.push(
         <button id={"pin" + i} key={i} onClick={() => props.pinsDown(i)}>
           {i}

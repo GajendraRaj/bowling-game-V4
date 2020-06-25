@@ -6,6 +6,8 @@ const BowlingGame = () => {
   const initialState = {
     rolls: [],
     score: 0,
+    possibleRoll: 10,
+    isSecondRoll: false,
   };
   const [gameState, setGameState] = useState(initialState);
   const [frameScore, setFrameScore] = useState([]);
@@ -13,12 +15,17 @@ const BowlingGame = () => {
   const updateScore = (pinsDown) => {
     const rolls = [...gameState.rolls, pinsDown];
     let score = rolls.length > 0 ? getTotalScore(rolls) : gameState.score;
+    let possibleRoll =
+      gameState.isSecondRoll || pinsDown === 10 ? 10 : 10 - pinsDown;
+    let isSecondRoll = gameState.isSecondRoll || pinsDown === 10 ? false : true;
 
     setGameState((prevState) => {
       return {
         ...prevState,
         rolls,
         score,
+        possibleRoll,
+        isSecondRoll,
       };
     });
   };
@@ -66,7 +73,7 @@ const BowlingGame = () => {
 
   return (
     <div className="Game">
-      <Pins pinsDown={updateScore} />
+      <Pins pinsDown={updateScore} possibleRoll={gameState.possibleRoll} />
       <ScoreCard
         rolls={gameState.rolls}
         score={gameState.score}

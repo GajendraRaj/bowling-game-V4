@@ -65,4 +65,22 @@ describe("BowlingGame component", () => {
     const totalScore = wrapper.find(ScoreCard).find("#total-score").text();
     expect(totalScore).toEqual("300");
   });
+
+  it("should hide the pins if sum of the last roll and its value is greater than 10", () => {
+    const wrapper = mount(<BowlingGame />);
+    const pin = wrapper.find(Pins).find("button").at(5);
+    pin.simulate("click");
+
+    expect(wrapper.find(Pins).find("button").at(0)).toHaveLength(1);
+    expect(wrapper.find(Pins).find("button").at(1)).toHaveLength(1);
+    expect(wrapper.find(Pins).find("button").at(2)).toHaveLength(1);
+    expect(wrapper.find(Pins).find("button").at(3)).toHaveLength(1);
+    expect(wrapper.find(Pins).find("button").at(4)).toHaveLength(1);
+    expect(wrapper.find(Pins).find("button").at(5)).toHaveLength(1);
+    expect(wrapper.find(Pins).find("button").at(6)).toHaveLength(0);
+    expect(wrapper.find(Pins).find("button").at(7)).toHaveLength(0);
+    expect(wrapper.find(Pins).find("button").at(8)).toHaveLength(0);
+    expect(wrapper.find(Pins).find("button").at(9)).toHaveLength(0);
+    expect(wrapper.find(Pins).find("button").at(10)).toHaveLength(0);
+  });
 });
